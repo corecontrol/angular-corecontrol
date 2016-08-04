@@ -75,8 +75,6 @@
 				vc.SurfaceSetControlProperty(ctlInfo.module, ctlInfo.index, key, value);
 			}
 
-			// Why do I need this block?
-
 			if (vc.IsConnected() == false)
 				setControlValueInternal(fullId, value);
 			else{
@@ -120,7 +118,6 @@
 				subscribersProperties.splice(index, 1);
 	    };
 	    this.subscribe = function(id, valuefunc, priority) {
-	    	console.log("subcribe id " +id);
 				if (!priority)
 					priority = 1	// default priority
 				var ids = id;
@@ -169,7 +166,6 @@
 				}
 	    };
 	    this.subscribeControlProperty = function(id, propertyfunc) {
-	    	console.log("subscribeControlProperty id :"+id);
 			var ids = id;
 			if (typeof id == 'string' || id instanceof String){
 				ids = [];
@@ -254,9 +250,7 @@
 				var ctlInfo = controlInfo[id];
 				if (ctlInfo)
 					ctlInfo[key] = value;
-				console.log( " subscriptionsControlProperty    ::"+JSON.stringify(subscriptionsControlProperty))
 				var subscribers = subscriptionsControlProperty[id];
-				console.log( " subscribers    ::"+subscribers)
 				if (!subscribers) return;
 				for (var i=0; i<subscribers.length; i++)
 					subscribers[i](key, value);
@@ -310,9 +304,7 @@
 		}
 		function addControlPropertyUpdate(id, key, value)
 		{
-			
 			controlPropertyUpdates.push({id:id,key:key,value:value})
-			console.log(controlPropertyUpdates);
 			if (updatesPending==false)
 			{
 				$timeout(updateValues, 20)
