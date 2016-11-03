@@ -262,8 +262,6 @@
 				if (key == kCControlProperty_ClientId){
 					if (typeof value != 'string') return;
 
-					// *** update vpanner navigation
-					var subscribers = subscriptionsModuleProperty["vpanner/navigation"];
 					if (!subscribers) return;
 					for (var i=0; i<subscribers.length; i++)
 					subscribers[i](value);
